@@ -1,0 +1,158 @@
+[
+  {
+    "id": "custom-1774531208651",
+    "name": "Whale motion",
+    "settings": {
+      "character": {
+        "scale": 2,
+        "spacing": 0,
+        "set": "standard",
+        "customChars": " .:+*#@",
+        "outputWidth": 0
+      },
+      "image": {
+        "brightness": 0,
+        "contrast": 0,
+        "saturation": 0,
+        "hue": 0,
+        "sharpness": 0,
+        "gamma": 1,
+        "colorMode": "color"
+      },
+      "color": {
+        "colorMode": "original",
+        "custom": "#00ff00",
+        "useOriginal": true,
+        "intensity": 1,
+        "backgroundColor": "#000000"
+      },
+      "advanced": {
+        "invert": false,
+        "brightnessMapping": 0.9,
+        "edgeEnhance": 0,
+        "blur": 4.5,
+        "quantizeColors": 0,
+        "spatialWeight": 0,
+        "matchQuality": "fast"
+      },
+      "postProcessing": {
+        "bloom": {
+          "enabled": false,
+          "threshold": 0.3,
+          "softThreshold": 0.2,
+          "intensity": 1.5,
+          "radius": 12
+        },
+        "grain": {
+          "enabled": false,
+          "intensity": 9,
+          "size": 3,
+          "speed": 1
+        },
+        "chromatic": {
+          "enabled": false,
+          "offset": 2
+        },
+        "scanlines": {
+          "enabled": false,
+          "opacity": 0.1,
+          "spacing": 4
+        },
+        "vignette": {
+          "enabled": false,
+          "intensity": 0.5,
+          "radius": 0.5
+        },
+        "crtCurve": {
+          "enabled": false,
+          "amount": 0.1
+        },
+        "phosphor": {
+          "enabled": false,
+          "color": "green",
+          "customColor": "#00ff00"
+        }
+      }
+    },
+    "isBuiltIn": false,
+    "createdAt": 1774531208651
+  },
+  {
+    "id": "custom-1775058153627",
+    "name": "ASCII - eyes",
+    "settings": {
+      "character": {
+        "scale": 2,
+        "spacing": 0.35,
+        "set": "detailed",
+        "customChars": " .:+*#@",
+        "outputWidth": 110
+      },
+      "image": {
+        "brightness": 0,
+        "contrast": 26,
+        "saturation": -100,
+        "hue": 40,
+        "sharpness": 0,
+        "gamma": 0.4,
+        "colorMode": "color"
+      },
+      "color": {
+        "colorMode": "mono",
+        "custom": "#969696",
+        "useOriginal": false,
+        "intensity": 2,
+        "backgroundColor": "#000000"
+      },
+      "advanced": {
+        "invert": true,
+        "brightnessMapping": 0.5,
+        "edgeEnhance": 0,
+        "blur": 4.5,
+        "quantizeColors": 256,
+        "spatialWeight": 0,
+        "matchQuality": "fast"
+      },
+      "postProcessing": {
+        "bloom": {
+          "enabled": false,
+          "threshold": 0.3,
+          "softThreshold": 0.2,
+          "intensity": 1.5,
+          "radius": 12
+        },
+        "grain": {
+          "enabled": false,
+          "intensity": 9,
+          "size": 3,
+          "speed": 1
+        },
+        "chromatic": {
+          "enabled": false,
+          "offset": 2
+        },
+        "scanlines": {
+          "enabled": false,
+          "opacity": 0.1,
+          "spacing": 4
+        },
+        "vignette": {
+          "enabled": false,
+          "intensity": 0.5,
+          "radius": 0.5
+        },
+        "crtCurve": {
+          "enabled": false,
+          "amount": 0.1
+        },
+        "phosphor": {
+          "enabled": false,
+          "color": "green",
+          "customColor": "#00ff00"
+        }
+      }
+    },
+    "isBuiltIn": false,
+    "createdAt": 1775058153627
+  }
+]
