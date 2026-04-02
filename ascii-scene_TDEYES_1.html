@@ -8,7 +8,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       overflow: hidden;
-      background: #000000;
+      background: #1F1F1F;
       font-family: monospace;
     }
     #ascii-scene {
@@ -35,11 +35,10 @@
 </head>
 <body>
   <div id="ascii-scene"></div>
-  <div id="info">Drag to rotate | Scroll to zoom</div>
+  <div id="info"></div>
 
   <script type="module">
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
@@ -62053,13 +62052,14 @@ function createAsciiScene(container) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(asciiData.backgroundColor);
 
-  // Camera setup - use perspective for better 3D effect
+  // Camera setup
   const aspect = container.clientWidth / container.clientHeight;
   const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 2000);
 
-  // Position camera to see the whole scene
   const maxDim = Math.max(asciiData.dimensions.width, asciiData.dimensions.height);
-  camera.position.set(0, 0, maxDim * 1.5);
+  const baseDistance = maxDim * 1.5;
+  const zoomedDistance = baseDistance / 2; // 200% zoom
+  camera.position.set(0, 0, zoomedDistance);
   camera.lookAt(0, 0, 0);
 
   // Renderer setup
@@ -62068,6 +62068,16 @@ function createAsciiScene(container) {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   container.appendChild(renderer.domElement);
+
+  // Mouse tracking
+  let mouseX = 0;
+  let mouseY = 0;
+  const mouseSensitivity = 0.3;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
 
   const textMeshes = [];
 
@@ -62105,18 +62115,11 @@ function createAsciiScene(container) {
     }
   );
 
-  // Orbit controls
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-  controls.screenSpacePanning = true;
-
   // Handle resize
   function onWindowResize() {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
-
   }
   window.addEventListener('resize', onWindowResize);
 
@@ -62124,24 +62127,23 @@ function createAsciiScene(container) {
   let animationId = null;
   function animate() {
     animationId = requestAnimationFrame(animate);
-    controls.update();
+    scene.rotation.y += (mouseX * mouseSensitivity - scene.rotation.y) * 0.05;
+    scene.rotation.x += (-mouseY * mouseSensitivity - scene.rotation.x) * 0.05;
     renderer.render(scene, camera);
   }
-  console.log('Animation loop created, bloom enabled: false');
 
   // Cleanup
   function dispose() {
     if (animationId) cancelAnimationFrame(animationId);
     window.removeEventListener('resize', onWindowResize);
+    window.removeEventListener('mousemove', onMouseMove);
     textMeshes.forEach(mesh => {
       mesh.geometry.dispose();
       mesh.material.dispose();
       scene.remove(mesh);
     });
-
     renderer.dispose();
     container.removeChild(renderer.domElement);
-    controls.dispose();
   }
 
   return { scene, camera, renderer, animate, dispose };
